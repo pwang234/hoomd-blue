@@ -7,7 +7,11 @@
 #include "NeighborListGPUStencil.cuh"
 #include "hoomd/TextureTools.h"
 #include "hoomd/WarpTools.cuh"
+#if __CUDACC_VER_MAJOR__ >= 11
+#include <cub/cub.cuh>
+#else
 #include "hoomd/extern/cub/cub/cub.cuh"
+#endif
 
 /*! \file NeighborListGPUStencil.cu
     \brief Defines GPU kernel code for O(N) neighbor list generation on the GPU with multiple bin stencils
